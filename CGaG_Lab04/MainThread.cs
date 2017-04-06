@@ -12,6 +12,9 @@ namespace CGaG_Lab04 {
 
         public MainThread( ) {
             Graphics = new GraphicsDeviceManager(this);
+            Graphics.PreferredBackBufferWidth = Graphics.PreferredBackBufferHeight = 704;
+            IsMouseVisible = true;
+            Window.Title = "CGaG Lab04";
             Content.RootDirectory = "Content";
         }
 
