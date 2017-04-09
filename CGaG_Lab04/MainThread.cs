@@ -1,14 +1,19 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using System;
+using System.Collections.Generic;
 
 namespace CGaG_Lab04 {
     /// <summary>
     /// This is the main type for your game.
     /// </summary>
     public class MainThread : Game {
-        GraphicsDeviceManager Graphics;
-        SpriteBatch SpriteBatch;
+
+        private GraphicsDeviceManager Graphics;
+        private SpriteBatch SpriteBatch;
+        //private SortedList<Single, IPresentable> ListOfInstances = new SortedList<float, IPresentable>( );
+        private List<IPresentable> ListOfInstances = new List<IPresentable>( );
 
         public MainThread( ) {
             Graphics = new GraphicsDeviceManager(this);
@@ -16,6 +21,19 @@ namespace CGaG_Lab04 {
             IsMouseVisible = true;
             Window.Title = "CGaG Lab04";
             Content.RootDirectory = "Content";
+
+            Center center = new Center(new Transform(new Vector2(352f, 352f), color: Color.Transparent), 64f);
+            SpaceObject sun = new SpaceObject(new Transform(new Vector2(0f, 0f), color: Color.Red), center, 0f, 0f, size: 24f);
+            InstanceCreate(sun);
+            SpaceObject planet1 = new SpaceObject(new Transform(new Vector2(0f, 0f), color: Color.Green), sun, 144f, 0.5f, size: 12f);
+            InstanceCreate(planet1);
+            InstanceCreate(new SpaceObject(new Transform(new Vector2(0f, 0f), color: Color.Blue), planet1, 32f, 4.3f, size: 8f));
+            InstanceCreate(new SpaceObject(new Transform(new Vector2(0f, 0f), color: Color.YellowGreen), sun, 256f, -0.3f, size: 16f));
+
+        }
+
+        public void InstanceCreate(IPresentable instance, Single depth = 0f) {
+            ListOfInstances.Add(instance);
         }
 
         /// <summary>
@@ -59,6 +77,9 @@ namespace CGaG_Lab04 {
                 Exit( );
 
             // TODO: Add your update logic here
+            foreach (var instance in ListOfInstances) {
+                instance.Update(time);
+            }
 
             base.Update(time);
         }
@@ -71,6 +92,11 @@ namespace CGaG_Lab04 {
             GraphicsDevice.Clear(Color.Black);
 
             // TODO: Add your drawing code here
+            SpriteBatch.Begin( );
+            foreach (var instance in ListOfInstances) {
+                instance.Draw(SpriteBatch);
+            }
+            SpriteBatch.End( );
 
             base.Draw(time);
         }

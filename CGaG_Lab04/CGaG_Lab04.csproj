@@ -41,7 +41,15 @@
     <ApplicationManifest>app.manifest</ApplicationManifest>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="CircleShape.cs" />
+    <Compile Include="IPresentable.cs" />
     <Compile Include="MainThread.cs" />
+    <Compile Include="Planet.cs" />
+    <Compile Include="Shape.cs" />
+    <Compile Include="SimpleUtils.cs" />
+    <Compile Include="Sun.cs" />
+    <Compile Include="Transform.cs" />
+    <Compile Include="Transformable.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

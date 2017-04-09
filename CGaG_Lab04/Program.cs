@@ -9,10 +9,13 @@ namespace CGaG_Lab04 {
         /// <summary>
         /// The main entry point for the application.
         /// </summary>
+
+        public static MainThread MainThread;
+
         [STAThread]
         static void Main( ) {
-            using (MainThread mainThread = new MainThread( ))
-                mainThread.Run( );
+            using (MainThread = new MainThread( ))
+                MainThread.Run( );
         }
     }
 #endif
