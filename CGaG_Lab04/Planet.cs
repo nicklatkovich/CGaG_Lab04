@@ -38,7 +38,7 @@ namespace CGaG_Lab04 {
         public void Draw(SpriteBatch surface) {
             new CircleShape(Size, this.Transform).Draw(surface);
             if (Orbit == null) {
-                Orbit = SimpleUtils.GenerateRingTexture((UInt32)Math.Round(Radius), 0.5f);
+                Orbit = SimpleUtils.GenerateRingTexture((UInt32)Math.Round(Radius), 0f);
             }
             surface.Draw(Orbit, Parent.Transform.Position - _orbitSize);
         }

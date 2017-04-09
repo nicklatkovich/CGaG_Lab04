@@ -28,7 +28,7 @@ namespace CGaG_Lab04 {
         }
 
         public static Texture2D GenerateRingTexture(UInt32 radius, Single width) {
-            Single center_coords = radius + width / 2f + 1;
+            Single center_coords = radius + width + 1;
             Vector2 center = new Vector2(center_coords, center_coords);
             UInt32 texture_size = (UInt32)Math.Ceiling(center_coords * 2);
             Texture2D result = new Texture2D(Program.MainThread.GraphicsDevice, (Int32)texture_size, (Int32)texture_size);
@@ -38,8 +38,12 @@ namespace CGaG_Lab04 {
                     UInt32 index = (UInt32)(x * result.Width + y);
                     Vector2 pos = new Vector2(x, y);
                     Single distance = PointDistance(pos, center);
-                    if (Math.Abs(distance - radius) < width) {
+                    Single temp = Math.Abs(distance - radius) - width;
+                    if (temp < 0f) {
                         colorData[index] = Color.White;
+                    } else if (temp <= 1f) {
+                        //colorData[index] = new Color(1f, 1f, 1f, 1f - temp);
+                        colorData[index] = new Color(1f, 0f, 0f, 0f);
                     } else {
                         colorData[index] = Color.Transparent;
                     }
