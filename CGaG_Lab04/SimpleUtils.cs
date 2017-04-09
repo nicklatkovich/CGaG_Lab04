@@ -27,7 +27,7 @@ namespace CGaG_Lab04 {
             return (Single)Math.Sqrt(Math.Pow(point1.X - point2.X, 2d) + Math.Pow(point1.Y - point2.Y, 2d));
         }
 
-        public static Texture2D GenerateRingTexture(UInt32 radius, UInt32 width) {
+        public static Texture2D GenerateRingTexture(UInt32 radius, Single width) {
             Single center_coords = radius + width / 2f + 1;
             Vector2 center = new Vector2(center_coords, center_coords);
             UInt32 texture_size = (UInt32)Math.Ceiling(center_coords * 2);
